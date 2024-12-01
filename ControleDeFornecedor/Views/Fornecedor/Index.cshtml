@@ -1,0 +1,168 @@
+﻿@model List<FornecedorModel>
+@{
+    ViewData["Title"] = "Listagem de Fornecedores";
+}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Fornecedores</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body {
+        padding-top: 80px;
+        background: linear-gradient(to bottom, #708090, #FFF0F5); 
+        color: #363636;
+        font-family: Arial, sans-serif;
+        }
+
+        .container {
+        max-width: 90%;
+        margin: 0 auto;
+        }
+
+        .btn-acionar-container {
+        text-align: center;
+        margin-bottom: 20px;
+        }
+
+        .btn-acionar {
+        left: -50px;
+        background-color: #20B2AA;
+        color: white;
+        font-size: 16px;
+        padding: 12px 20px;
+        border-radius: 15px;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        }
+
+        .btn-acionar:hover {
+        background-color: #008B8B;
+        }
+
+        .custom-table {
+        background: rgba(255, 255, 255, 0.3); 
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        margin: 20px auto;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        border: 1px solid #ccc; 
+        }
+
+        .custom-table table {
+        width: 100%;
+        border-collapse: collapse;
+        }
+
+        .custom-table th, .custom-table td {
+        padding: 12px;
+        text-align: left;
+        border: none;
+        }
+
+        .custom-table th {
+        background-color: transparent;
+        color: #363636;
+        font-size: 18px;
+        }
+
+        .custom-table td {
+        background-color: transparent;
+        font-size: 16px;
+        }
+
+        .custom-table .btn {
+        background: #363636;
+        border: none;
+        color: white;
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        }
+
+        .custom-table .btn:hover {
+        background: #20B2AA;
+        }
+
+
+        .custom-table .btn-excluir:hover {
+        background: red;
+        }
+
+        .custom-table .btn-group {
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        gap: 10px;
+        margin-top: 15px;
+        }
+
+        .custom-table td .btn {
+        font-size: 14px;
+        }
+
+        .custom-table h2 {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="btn-acionar-container">
+            <a class="btn btn-primary" role="button" asp-controller="Fornecedor" asp-action="Criar">Adicionar novo Fornecedor</a>
+        </div>
+
+        <div class="custom-table">
+            <h2 class="text-center">Listagem de Fornecedores</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Razão Social</th>
+                        <th>Nome Fantasia</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Endereço Completo</th>
+                        <th>Pessoa de Contato</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (FornecedorModel fornecedor in Model)
+                        {
+                     <tr>
+                        <td>@fornecedor.Id</td>
+                        <td>@fornecedor.RazaoSocial</td>
+                        <td>@fornecedor.NomeFantasia</td>
+                        <td>@fornecedor.Email</td>
+                        <td>@fornecedor.Telefone</td>
+                        <td>@fornecedor.EnderecoCompleto</td>
+                        <td>@fornecedor.PessoaDeContato</td>
+                        <td class="btn-group">
+                            <a role="button"class="btn"asp-route-id="@fornecedor.Id" asp-controller="Fornecedor" asp-action="Editar">Editar</a>
+                           <a role="button"class="btn btn-excluir"asp-route-id="@fornecedor.Id" asp-controller="Fornecedor" asp-action="ApagarConfirmacao">Excluir</a>
+                        </td>
+                    </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

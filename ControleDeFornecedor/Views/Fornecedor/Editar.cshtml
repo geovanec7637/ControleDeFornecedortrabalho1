@@ -1,0 +1,129 @@
+﻿@model FornecedorModel
+@{
+    ViewData["Title"] = "Editar Fornecedores";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Fornecedores</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body {
+            padding-top: 80px; 
+            background: linear-gradient(to bottom, #708090, #FFF0F5); 
+            color: #363636;
+            font-family: Arial, sans-serif;
+        }
+
+        .custom-form {
+            background: rgba(255, 255, 255, 0.3); 
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5); 
+            border-radius: 20px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 600px;
+            margin: 20px auto; 
+        }
+
+        .custom-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #363636;
+        }
+
+        .custom-form .form-control {
+            background: rgba(255, 255, 255, 0.7); 
+            border: 1px solid rgba(0, 0, 0, 0.2); 
+            border-radius: 10px; 
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .custom-form .form-control:focus {
+            outline: none;
+            border-color: #363636;
+            box-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+        }
+
+        .custom-form .btn {
+            background: #363636;
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 10px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .custom-form .btn:hover {
+            background: #20B2AA;
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+
+        .btn-voltar img {
+            width: 40px; 
+            height: 40px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Botão Voltar -->
+        <a class="btn-voltar" href="@Url.Action("Index", "Fornecedor")">
+            <img src="https://cdn-icons-png.flaticon.com/512/93/93634.png" alt="Voltar">
+        </a>
+
+        <!-- Formulário para Editar Fornecedor -->
+        <form asp-controller="Fornecedor" asp-action="Editar" method="post" class="custom-form">
+            <h2>Editar Fornecedores</h2>
+
+            <!-- Campo oculto para ID -->
+            <input type="hidden" asp-for="Id" />
+
+            <div class="mb-3">
+                <label for="razaoSocial" class="form-label">Razão Social</label>
+                <input type="text" asp-for="RazaoSocial" id="razaoSocial" class="form-control" placeholder="Digite a razão social" required>
+            </div>
+            <div class="mb-3">
+                <label for="nomeFantasia" class="form-label">Nome Fantasia</label>
+                <input type="text" asp-for="NomeFantasia" id="nomeFantasia" class="form-control" placeholder="Digite o nome fantasia" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" asp-for="Email" id="email" class="form-control" placeholder="Digite o email" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone</label>
+                <input type="tel" asp-for="Telefone" id="telefone" class="form-control" placeholder="Digite o telefone" required>
+            </div>
+            <div class="mb-3">
+                <label for="endereco" class="form-label">Endereço Completo</label>
+                <input type="text" asp-for="EnderecoCompleto" id="endereco" class="form-control" placeholder="Digite o endereço completo" required>
+            </div>
+            <div class="mb-3">
+                <label for="nomeContato" class="form-label">Nome da Pessoa de Contato</label>
+                <input type="text" asp-for="PessoaDeContato" id="nomeContato" class="form-control" placeholder="Digite o nome da pessoa de contato" required>
+            </div>
+
+            <!-- Botão de enviar -->
+            <div class="d-grid">
+                <button type="submit" class="btn">Editar</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

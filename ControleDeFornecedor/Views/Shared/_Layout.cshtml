@@ -1,0 +1,178 @@
+﻿@{
+    ViewData["Title"] = "Listagem de Fornecedores";
+}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Controle De Fornecedores</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ControleDeFornecedor.styles.css" asp-append-version="true" />
+    <style>
+        .custom-navbar {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.3); 
+            backdrop-filter: blur(30px); 
+            border: 1px solid rgba(255, 255, 255, 0.5); 
+            border-radius: 20px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            padding: 10px 20px;
+            width: 80%; 
+            max-width: 1200px; 
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between; 
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            gap: 15px; 
+        }
+
+        .custom-navbar .nav-link {
+            color: #363636 !important;
+            font-weight: bold;
+            transition: color 0.3s, background-color 0.3s;
+            padding: 8px 15px;
+            border-radius: 10px;
+        }
+
+        .custom-navbar .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #20B2AA !important;
+        }
+
+        body {
+            padding-top: 80px;
+            background: linear-gradient(to bottom, #708090, #FFF0F5); 
+            color: white; 
+        }
+
+    
+        .custom-table {
+            background: rgba(255, 255, 255, 0.3); 
+            backdrop-filter: blur(5px); 
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .custom-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .custom-table th, .custom-table td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        .custom-table th {
+            background-color: transparent;
+            color: #363636;
+            font-size: 18px;
+        }
+
+        .custom-table td {
+            background-color: transparent; 
+            font-size: 16px;
+        }
+
+        .custom-table .btn {
+            background: #363636;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .custom-table .btn:hover {
+            background: #20B2AA;
+        }
+
+        .custom-table .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        
+        .btn-adicionar {
+            position: absolute;
+            top: -40px; 
+            left: 0;
+            background-color: #20B2AA;
+            color: white;
+            font-size: 16px;
+            padding: 12px 20px;
+            border-radius: 50%;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 2000;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-adicionar:hover {
+            background-color: #008B8B;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="custom-navbar">
+            <div class="nav-left">
+                <a class="nav-link" asp-controller="Home" asp-action="Index">Página Inicial</a>
+            </div>
+            <div class="nav-right">
+                <a class="nav-link" asp-controller="Fornecedor" asp-action="Index" target="_blank">Fornecedores</a>
+                <a class="nav-link" asp-controller="Adicionar" asp-action="Index">Adicionar</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <button class="btn-adicionar" title="Adicionar Fornecedor">
+            <i class="fa fa-plus"></i> <!-- Ícone de "+" -->
+        </button>
+
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer text-muted">
+        <div class="container text-center pt-3">
+            &copy; 2024 - Controle De Fornecedores
+        </div>
+    </footer>
+
+    <style>
+    .footer {
+        background-color: rgba(255, 255, 255, 0); /* Totalmente transparente */
+        color: rgba(255, 255, 255, 0);           /* Totalmente transparente */
+    }
+
+
+        .footer .container {
+            padding: -5px 0;
+            font-size: 0.9rem;
+        }
+    </style>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
